@@ -1,0 +1,595 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Stalia S Writing Portfolio</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a deep-green cover band with portrait and headline numbers, then a contents page. Blogs read as search results (keyword in a search pill), ads as sponsored-post cards. The yellow highlighter is the one loud element. */
+:root {
+  --bg: #F6F8F6;
+  --surface: #FFFFFF;
+  --tint: #E6EFEA;
+  --fg: #14211D;
+  --muted: #56655F;
+  --line: #D5DCD7;
+  --link: #0A6449;
+  --mark: #FFE14D;
+  --mark-fg: #14211D;
+  --cover: #0E3B2E;
+  --cover-fg: #F2F7F4;
+  --cover-muted: #A9C4B8;
+  --cover-line: #2A5A4A;
+  --display: "Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body: "Source Serif 4", Georgia, "Times New Roman", serif;
+  --mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0F1513; --surface: #161E1B; --tint: #1B2622; --fg: #E7EDE9; --muted: #96A69F;
+    --line: #27322E; --link: #62D4A8; --mark: #FFE14D; --mark-fg: #14211D;
+    --cover: #0B2A21; --cover-fg: #F2F7F4; --cover-muted: #9DB8AC; --cover-line: #214638;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0F1513; --surface: #161E1B; --tint: #1B2622; --fg: #E7EDE9; --muted: #96A69F;
+  --line: #27322E; --link: #62D4A8; --mark: #FFE14D; --mark-fg: #14211D;
+  --cover: #0B2A21; --cover-fg: #F2F7F4; --cover-muted: #9DB8AC; --cover-line: #214638;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body { background: var(--bg); color: var(--fg); font-family: var(--body); font-size: 17px; line-height: 1.6; }
+.inner {
+  max-width: 1040px; margin: 0 auto;
+  padding-left: max(20px, env(safe-area-inset-left, 0px));
+  padding-right: max(20px, env(safe-area-inset-right, 0px));
+}
+a { color: var(--link); text-underline-offset: 3px; text-decoration-thickness: 1px; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; border-radius: 2px; }
+
+/* Cover */
+.cover { background: var(--cover); color: var(--cover-fg); }
+.cover .inner { padding-block: 52px 0; display: flex; flex-direction: column; gap: 40px; }
+.hero { display: grid; grid-template-columns: minmax(0, 1fr) 250px; gap: 40px; align-items: center; }
+.hero-text { display: flex; flex-direction: column; gap: 20px; min-width: 0; }
+.name { font-family: var(--mono); font-size: 13px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cover-muted); margin: 0; }
+h1 { font-family: var(--display); font-weight: 700; font-size: clamp(32px, 5.4vw, 54px); line-height: 1.07; letter-spacing: -0.02em; margin: 0; text-wrap: balance; }
+h1 mark { background: var(--mark); color: var(--mark-fg); padding: 0 0.12em; border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
+.about { margin: 0; max-width: 58ch; font-size: 18px; color: var(--cover-fg); }
+.chips { display: flex; flex-wrap: wrap; gap: 8px; font-family: var(--mono); font-size: 12.5px; }
+.facts { margin: 0; display: flex; flex-direction: column; gap: 8px; padding-top: 16px; border-top: 1px solid var(--cover-line); max-width: 58ch; }
+.facts div { display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 14px; align-items: baseline; }
+.facts dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cover-muted); }
+.facts dd { margin: 0; font-size: 16px; line-height: 1.45; }
+.chips span { border: 1px solid var(--cover-line); color: var(--cover-fg); padding: 3px 10px; border-radius: 999px; }
+.portrait {
+  width: 100%; max-width: 250px; aspect-ratio: 4 / 5; justify-self: end;
+  border-radius: 14px; background: var(--cover-line); position: relative; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 10px 10px 0 var(--mark);
+}
+.portrait span { font-family: var(--display); font-weight: 700; font-size: 110px; line-height: 1; color: var(--cover-fg); opacity: 0.9; }
+.portrait img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); border-top: 1px solid var(--cover-line); }
+.stat { padding: 22px 20px 26px 0; display: flex; flex-direction: column; gap: 6px; min-width: 0; }
+.stat + .stat { padding-left: 20px; border-left: 1px solid var(--cover-line); }
+.stat b { font-family: var(--display); font-weight: 700; font-size: clamp(24px, 3.2vw, 34px); line-height: 1.1; color: var(--mark); font-variant-numeric: tabular-nums; }
+.stat span { font-size: 14.5px; line-height: 1.45; color: var(--cover-muted); }
+
+/* Body */
+main.inner { padding-block: 28px 72px; display: flex; flex-direction: column; gap: 64px; }
+.jump { display: flex; flex-wrap: wrap; gap: 8px 22px; font-family: var(--mono); font-size: 13px; padding-bottom: 16px; border-bottom: 1px solid var(--line); }
+section { display: flex; flex-direction: column; gap: 22px; }
+.head { display: flex; flex-direction: column; gap: 8px; max-width: 66ch; }
+h2 { font-family: var(--display); font-weight: 700; font-size: clamp(26px, 3.6vw, 34px); line-height: 1.12; margin: 0; text-wrap: balance; }
+h2 span { background: linear-gradient(transparent 62%, var(--mark) 62%); padding: 0 2px; }
+.head p { margin: 0; color: var(--muted); }
+.proof { display: flex; flex-wrap: wrap; gap: 10px; }
+.proof div { background: var(--tint); border-radius: 10px; padding: 12px 16px; display: flex; flex-direction: column; gap: 2px; min-width: 0; flex: 1 1 220px; }
+.proof b { font-family: var(--display); font-weight: 700; font-size: 22px; line-height: 1.2; font-variant-numeric: tabular-nums; }
+.proof span { font-size: 14.5px; line-height: 1.45; color: var(--muted); }
+
+/* Blog entries */
+.list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.entry { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 20px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+h3 { font-family: var(--display); font-weight: 500; font-size: 20px; line-height: 1.25; margin: 0; text-wrap: balance; }
+h3 a { color: var(--fg); text-decoration-color: var(--line); }
+h3 a:hover { color: var(--link); text-decoration-color: var(--link); }
+.entry p { margin: 0; font-size: 16px; line-height: 1.55; }
+.search { align-self: flex-start; max-width: 100%; display: inline-flex; align-items: center; gap: 8px; font-family: var(--mono); font-size: 12.5px; background: var(--tint); color: var(--fg); padding: 5px 12px; border-radius: 999px; }
+.search svg { flex: none; width: 13px; height: 13px; stroke: var(--muted); fill: none; stroke-width: 2; }
+.meta { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: auto; padding-top: 4px; }
+.by { letter-spacing: 0.06em; text-transform: uppercase; font-weight: 500; padding: 2px 8px; border-radius: 3px; }
+.by.mine { background: var(--fg); color: var(--bg); }
+.by.co { border: 1px solid var(--fg); color: var(--fg); }
+.by.ghost { border: 1px dashed var(--muted); color: var(--fg); }
+.result { font-family: var(--mono); font-size: 12.5px; color: var(--fg); background: var(--mark); color: var(--mark-fg); align-self: flex-start; padding: 3px 9px; border-radius: 4px; }
+
+/* Featured article */
+.feature { background: var(--cover); color: var(--cover-fg); border-radius: 14px; padding: 28px; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr); gap: 28px; align-items: center; }
+.feature blockquote { margin: 0; font-family: var(--display); font-weight: 700; font-size: clamp(24px, 3.4vw, 34px); line-height: 1.15; text-wrap: balance; }
+.feature blockquote::before { content: "\201C"; color: var(--mark); }
+.feature blockquote::after { content: "\201D"; color: var(--mark); }
+.feature .side { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.feature h3 a { color: var(--cover-fg); text-decoration-color: var(--cover-line); }
+.feature h3 a:hover { color: var(--mark); text-decoration-color: var(--mark); }
+.feature p { margin: 0; font-size: 16px; line-height: 1.55; color: var(--cover-muted); }
+.feature .meta { color: var(--cover-muted); margin-top: 0; }
+.feature .by.mine { background: var(--cover-fg); color: var(--cover); }
+
+/* Ad and copy cards */
+.cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.cards.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 18px; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.tag { font-family: var(--mono); font-size: 11.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); display: flex; justify-content: space-between; gap: 10px; }
+.card h3 { font-size: 18px; }
+.card p { margin: 0; font-size: 15.5px; line-height: 1.5; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 14px; font-family: var(--mono); font-size: 13px; margin-top: auto; padding-top: 4px; }
+.note { font-size: 14.5px; color: var(--muted); margin: 0; }
+.pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 0; padding: 0; list-style: none; }
+.pills li { background: var(--tint); border-radius: 999px; padding: 6px 14px; font-size: 15.5px; line-height: 1.4; }
+.tools { margin: 0; display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.tools div { display: grid; grid-template-columns: 190px minmax(0, 1fr); gap: 16px; align-items: baseline; padding-block: 12px; border-bottom: 1px solid var(--line); }
+.tools dt { font-family: var(--mono); font-size: 12px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--muted); }
+.tools dd { margin: 0; font-size: 16px; line-height: 1.5; }
+h3.sub { font-size: 18px; }
+@media (max-width: 680px) { .tools div { grid-template-columns: minmax(0, 1fr); gap: 2px; } }
+.shots { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-items: start; }
+.shots figure { margin: 0; display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.shots img { display: block; width: 100%; height: auto; border-radius: 10px; border: 1px solid var(--line); }
+.shots figcaption { font-size: 15px; line-height: 1.5; }
+.shots figcaption b { font-family: var(--display); font-weight: 700; }
+.shots figcaption span { display: block; font-family: var(--mono); font-size: 12px; color: var(--muted); }
+@media (max-width: 680px) { .shots { grid-template-columns: minmax(0, 1fr); } }
+
+/* Contact */
+footer { background: var(--tint); border-radius: 14px; padding: 28px; display: flex; flex-direction: column; gap: 12px; }
+footer p { margin: 0; max-width: 60ch; }
+.contact { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 20px; font-family: var(--mono); font-size: 14px; }
+.email { user-select: all; overflow-wrap: anywhere; }
+button.copy { font: inherit; font-size: 12.5px; color: var(--fg); background: var(--surface); border: 1px solid var(--line); border-radius: 4px; padding: 4px 10px; cursor: pointer; }
+button.copy:hover { border-color: var(--fg); }
+
+@media (max-width: 860px) {
+  .cards { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--cover-line); }
+}
+@media (max-width: 680px) {
+  body { font-size: 16px; }
+  .cover .inner { padding-block: 32px 0; gap: 28px; }
+  .hero { grid-template-columns: minmax(0, 1fr); gap: 28px; }
+  .portrait { justify-self: start; max-width: 150px; order: -1; box-shadow: 7px 7px 0 var(--mark); }
+  .portrait span { font-size: 64px; }
+  .about { font-size: 17px; }
+  .list, .cards, .cards.two, .feature { grid-template-columns: minmax(0, 1fr); }
+  main.inner { gap: 48px; }
+  .feature, footer { padding: 22px; }
+}
+</style>
+
+<div class="cover">
+  <div class="inner">
+    <div class="hero">
+      <div class="hero-text">
+        <p class="name">Stalia S · Senior content marketer</p>
+        <h1>I write B2B SaaS content that makes technical products <mark>easy to understand</mark>.</h1>
+        <p class="about">Hi, I'm Stalia. I've spent four years in-house at TargetBay and DevRev, so I've never been able to hand off a draft and call it a day. I pick the brains of the people who build and sell the product, figure out where customers keep getting stuck, and then cut to the chase: plain words, no fluff, and a reader who gets it the first time. Every blog, ad and email on this page started that way.</p>
+        <dl class="facts">
+          <div><dt>Based in</dt><dd>Chennai, India</dd></div>
+          <div><dt>Open to</dt><dd>Freelance and full-time roles in content marketing and copywriting</dd></div>
+          <div><dt>Location</dt><dd>Remote for companies in India or anywhere else, or hybrid in Chennai</dd></div>
+        </dl>
+      </div>
+      <div class="portrait"><img src="shots/portrait.webp" alt="Portrait of Stalia S"></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><b>10k → 14k</b><span>monthly organic visits to the DevRev blog while I ran SEO content</span></div>
+      <div class="stat"><b>6</b><span>AI search citations: 4 in Google's AI Overview, 2 in ChatGPT</span></div>
+      <div class="stat"><b>479+</b><span>registrations for digital events across APJ, EMEA and NAMER that I planned and wrote for</span></div>
+      <div class="stat"><b>36 → 40</b><span>Domain Authority at TargetBay in 10 months, through outreach and link building</span></div>
+    </div>
+  </div>
+</div>
+
+<main class="inner">
+
+  <nav class="jump" aria-label="Sections">
+    <a href="#seo">SEO blogs</a>
+    <a href="#thought-leadership">Thought leadership</a>
+    <a href="#ads">Ad copy</a>
+    <a href="#email">Email, events and outreach</a>
+    <a href="#web">Web copy and customer stories</a>
+    <a href="#strategy">Brand and content strategy</a>
+    <a href="#skills">Skills and tools</a>
+    <a href="#contact">Contact</a>
+  </nav>
+
+  <section id="seo">
+    <div class="head">
+      <h2><span>SEO blogs</span></h2>
+      <p>Long-form guides, each written to rank for one focus keyword. All six carry my byline on the DevRev blog.</p>
+    </div>
+    <div class="shots">
+      <figure>
+        <img src="shots/service-strategies-first.webp" alt="Google results showing the DevRev article on customer service management strategies as the first result">
+        <figcaption><b>First result on Google.</b> The customer service management guide, for a search on the ten customer service strategies to follow.<span>Google search, checked Nov 2026</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/data-protection-ai-overview.webp" alt="Google AI Overview for how to protect customer data, with the DevRev article listed first among its sources">
+        <figcaption><b>Cited in Google's AI Overview.</b> The data protection guide is the first source listed for “how to protect customer data”, and also ranks on page one.<span>Google search, checked Nov 2026</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/loyalty-ai-overview.webp" alt="Google AI Overview for how to build a strong customer loyalty program, with the DevRev article listed first among its sources">
+        <figcaption><b>Cited in Google's AI Overview.</b> The loyalty program article is the first source listed for “how to build a strong customer loyalty program”, and also ranks on page one.<span>Google search, checked Nov 2026</span></figcaption>
+      </figure>
+      <figure>
+        <img src="shots/cx-strategy.webp" alt="Google results for customer experience strategy showing the DevRev article directly below Zendesk">
+        <figcaption><b>Page one on Google.</b> The CX strategy guide appears directly below Zendesk for its focus keyword, “customer experience strategy”.<span>Google search, checked Nov 2026</span></figcaption>
+      </figure>
+    </div>
+    <div class="list">
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>customer experience strategy</span>
+        <h3><a href="https://devrev.ai/blog/customer-experience-strategy" target="_blank" rel="noopener">Customer experience strategy 101: Create a winning CX plan</a></h3>
+        <p>Defines CX strategy, makes the business case with McKinsey and Forbes data, then walks through a seven-step build, from empathy maps to measurement.</p>
+        <span class="result">Page one on Google for its focus keyword</span>
+        <div class="meta"><span>14 min read</span><span>Nov 2024</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>customer service management</span>
+        <h3><a href="https://devrev.ai/blog/customer-service-management-strategies" target="_blank" rel="noopener">Top 10 customer service management strategies</a></h3>
+        <p>A pillar guide: what customer service management is, ten strategies, where the field is heading, and three customer examples, including a 60% cut in support turnaround time at AR Digital Wealth.</p>
+        <span class="result">First result on Google for a ten-strategies search</span>
+        <div class="meta"><span>19 min read</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>customer data protection</span>
+        <h3><a href="https://devrev.ai/blog/customer-data-protection" target="_blank" rel="noopener">Customer data protection: 12 ways to keep customer data safe</a></h3>
+        <p>Twelve practical steps, plus the types of data to protect, the laws that apply (GDPR, CCPA) and what goes wrong when protection is weak.</p>
+        <span class="result">Cited in Google's AI Overview</span>
+        <div class="meta"><span>12 min read</span><span>Jan 2025</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>customer complaint</span>
+        <h3><a href="https://devrev.ai/blog/customer-complaint" target="_blank" rel="noopener">How to handle customer complaints: a 5-step process</a></h3>
+        <p>A five-step process for resolving complaints, two customer examples, and a section for support agents on dealing with angry customers.</p>
+        <div class="meta"><span>12 min read</span><span>Nov 2023</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>holiday customer service</span>
+        <h3><a href="https://devrev.ai/blog/holiday-customer-support-tips" target="_blank" rel="noopener">Holiday customer service: 8 support tips for a stress-free season</a></h3>
+        <p>A seasonal playbook for support leaders. Starts with last year's ticket data, then gives eight tips on staffing, self-service, proactive support and team morale.</p>
+        <div class="meta"><span>10 min read</span><span>Nov 2024</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <span class="search"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>customer loyalty program</span>
+        <h3><a href="https://devrev.ai/blog/customer-loyalty-program" target="_blank" rel="noopener">Building a customer loyalty program</a></h3>
+        <p>Argues that loyalty is earned through fast resolution, not points. Covers five program types and three examples, including Starbucks and American Express.</p>
+        <span class="result">Cited in Google's AI Overview</span>
+        <div class="meta"><span>7 min read</span><span>Oct 2023</span><span class="by mine">My byline</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="thought-leadership">
+    <div class="head">
+      <h2><span>Thought leadership</span></h2>
+      <p>Opinion-led articles built from event talks, customer conversations and interviews with subject experts. Some are published under a leader's name.</p>
+    </div>
+    <div class="feature">
+      <blockquote>The tools got smarter. The friction didn't go away.</blockquote>
+      <div class="side">
+        <h3><a href="https://devrev.ai/blog/ai-can-do-it-all" target="_blank" rel="noopener">AI can do it all. So why is $4.5 trillion still out of reach?</a></h3>
+        <p>Built from talks at DevRev's Effortless event in Mumbai. Takes one number and explains it through three failure points, with examples from HDFC Bank, TCC Global and IndiGo. Sent to attendees and non-attendees as a follow-up.</p>
+        <span class="result">17+ replies from attendees, 8 from non-attendees</span>
+        <div class="meta"><span>7 min read</span><span>Apr 2026</span><span class="by mine">My byline</span></div>
+      </div>
+    </div>
+    <div class="list">
+      <article class="entry">
+        <h3><a href="https://devrev.ai/blog/searching-not-solving" target="_blank" rel="noopener">Searching, not solving? Why your employees can't find what they need</a></h3>
+        <p>Makes the case that workplace search costs teams a large part of their week, using quotes from leaders at Razorpay, HDFC Bank, AWS and DevRev.</p>
+        <div class="meta"><span>12 min read</span><span>Apr 2025</span><span class="by mine">My byline</span></div>
+      </article>
+      <article class="entry">
+        <h3><a href="https://devrev.ai/blog/support-metrics-to-share-with-product" target="_blank" rel="noopener">3 metrics every support leader should share with product</a></h3>
+        <p>Why CSAT and NPS don't guide product decisions, and three metrics that do. Published with Richard Marr, Head of Australia and New Zealand at DevRev.</p>
+        <div class="meta"><span>8 min read</span><span>May 2025</span><span class="by co">Co-byline</span></div>
+      </article>
+      <article class="entry">
+        <h3><a href="https://devrev.ai/blog/break-data-silos-to-make-AI-work" target="_blank" rel="noopener">AI can't help you (yet): the data silos problem no one talks about</a></h3>
+        <p>Why most enterprise AI projects stall: the data underneath is fragmented. Published under the name of Jeffin Mathew, Regional Sales, ASEAN.</p>
+        <div class="meta"><span>9 min read</span><span>Jan 2026</span><span class="by ghost">Ghostwritten</span></div>
+      </article>
+      <article class="entry">
+        <h3><a href="https://devrev.ai/blog/mcp-modern-memory-architecture-enterprise-ai" target="_blank" rel="noopener">MCP + Computer Memory: why enterprise AI needs access and insight</a></h3>
+        <p>A technical topic in plain language. Explains Model Context Protocol with a USB-C comparison, then shows six places it falls short. Published under the name of Jithesh Gopan, Solutions Engineer.</p>
+        <div class="meta"><span>9 min read</span><span>Nov 2025</span><span class="by ghost">Ghostwritten</span></div>
+      </article>
+    </div>
+  </section>
+
+  <section id="ads">
+    <div class="head">
+      <h2><span>Ad copy</span></h2>
+      <p>LinkedIn ads for DevRev, grouped by the job each ad had to do. Each link opens the ad in LinkedIn's public Ad Library.</p>
+    </div>
+    <div class="proof">
+      <div><b>0.9% CTR</b><span>Freshdesk takeout ad, against a typical 0.4–0.6% for LinkedIn B2B ads</span></div>
+      <div><b>1% CTR</b><span>paid ads for the Computer product launch</span></div>
+      <div><b>4 demos</b><span>booked from the Freshdesk and Zendesk takeout campaigns</span></div>
+    </div>
+    <div class="cards">
+      <div class="card">
+        <div class="tag"><span>Launch</span><span>2 ads</span></div>
+        <h3>Product launch: Computer</h3>
+        <p>Ads for the launch of Computer, DevRev's flagship product, to a cold global audience.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1341896036" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1341698116" target="_blank" rel="noopener">Ad 2</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Competitor</span><span>3 ads</span></div>
+        <h3>Competitor takeout</h3>
+        <p>Ads for support teams already using Zendesk or Freshdesk, leading to a comparison page.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1341887726" target="_blank" rel="noopener">Zendesk 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1342261846" target="_blank" rel="noopener">Zendesk 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1048876776" target="_blank" rel="noopener">Freshdesk</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Pain point</span><span>3 ads</span></div>
+        <h3>Pain-point ads</h3>
+        <p>Each ad opens on one problem the buyer has, then points to a free trial, a demo or the product page.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1383893926" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1383775066" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1383775056" target="_blank" rel="noopener">Ad 3</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Thought leadership</span><span>5 ads</span></div>
+        <h3>Thought leadership ads</h3>
+        <p>Ads that carried the Computer launch story and promoted thought leadership content.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1378284076" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1389132686" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1389182546" target="_blank" rel="noopener">Ad 3</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1380599726" target="_blank" rel="noopener">Ad 4</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1198709503" target="_blank" rel="noopener">Ad 5</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Education</span><span>4 ads</span></div>
+        <h3>Product education ads</h3>
+        <p>Ads that explain what the product does. I handled the idea, the script and the execution.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1357378076" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1357433236" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1357550456" target="_blank" rel="noopener">Ad 3</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1357501376" target="_blank" rel="noopener">Ad 4</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Repurposed</span><span>3 ads</span></div>
+        <h3>Event moments turned into ads</h3>
+        <p>Short clips and points from events, reworked as product education ads.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1370067566" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1357339836" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1357579886" target="_blank" rel="noopener">Ad 3</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Webinar</span><span>3 ads</span></div>
+        <h3>Webinar ads for ASEAN</h3>
+        <p>Registration ads for a webinar aimed at support leaders in Southeast Asia. The webinar drew 129 registrations.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1370095816" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1370105866" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1370067566" target="_blank" rel="noopener">Ad 3</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Events</span><span>6 ads</span></div>
+        <h3>Event invitations</h3>
+        <p>Invitations to in-person events, including region-specific ads for the Leadership Circle in Amsterdam.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1384475416" target="_blank" rel="noopener">Ad 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1384512866" target="_blank" rel="noopener">Ad 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1383669846" target="_blank" rel="noopener">Amsterdam 1</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1383689616" target="_blank" rel="noopener">Amsterdam 2</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1383880356" target="_blank" rel="noopener">Amsterdam 3</a>
+          <a href="https://www.linkedin.com/ad-library/detail/1376123196" target="_blank" rel="noopener">Amsterdam 4</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>Customer story</span><span>1 ad</span></div>
+        <h3>Customer story ad</h3>
+        <p>A customer case study turned into an ad, based on my interview with the customer.</p>
+        <div class="links">
+          <a href="https://www.linkedin.com/ad-library/detail/1357462586" target="_blank" rel="noopener">Ad 1</a>
+        </div>
+      </div>
+    </div>
+    <p class="note">LinkedIn may ask you to sign in to view an ad.</p>
+  </section>
+
+  <section id="email">
+    <div class="head">
+      <h2><span>Email, events and outreach</span></h2>
+      <p>Writing meant to get a reply, a registration or a link, plus the words speakers said on stage. Most of this went to private inboxes, so there are few public links. Samples can be shared on request.</p>
+    </div>
+    <div class="cards two">
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Webinar programs</span></div>
+        <h3>Webinar strategy and email cadences</h3>
+        <p>I built the strategy for these programs: topic ideas, the one-pager, promotion channels and assets, then the invitation, reminder and follow-up emails. They ran across APJ, EMEA and NAMER as Computer launch education sessions, product-led webinars and customer-led webinars, and brought in 479+ registrations and 12 demo bookings from marketing-qualified leads.</p>
+        <div class="links">
+          <a href="https://luma.com/5pgxr9xe" target="_blank" rel="noopener">ASEAN event page</a>
+          <a href="https://luma.com/g53gu0ym" target="_blank" rel="noopener">ANZ event page</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Event invitation</span></div>
+        <h3>One invitation email, 100+ registrations</h3>
+        <p>A single invitation email for an in-person event that brought in more than 100 registrations from the target audience.</p>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Speaker talk tracks</span></div>
+        <h3>Event talk tracks</h3>
+        <p>Wrote the talk tracks for event speakers, working with each speaker so the script sounded like them and covered what the audience came to learn.</p>
+      </div>
+      <div class="card">
+        <div class="tag"><span>TargetBay</span><span>Cold email and link building</span></div>
+        <h3>Cold outreach and organic link building</h3>
+        <p>Cold emails written to earn a reply from people who had never heard of the brand, and links earned without paying for them. TargetBay's Domain Authority rose from 36 to 40 in 10 months.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="web">
+    <div class="head">
+      <h2><span>Web copy and customer stories</span></h2>
+      <p>Product pages, landing pages and case studies, written with product marketing, design and customer success teams.</p>
+    </div>
+    <div class="cards two">
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Product pages</span></div>
+        <h3>Product pages</h3>
+        <p>Copy that turns product capabilities into clear positioning.</p>
+        <div class="links">
+          <a href="https://devrev.ai/meet-computer" target="_blank" rel="noopener">Meet Computer</a>
+          <a href="https://devrev.ai/support-app" target="_blank" rel="noopener">Support App</a>
+          <a href="https://devrev.ai/build-app" target="_blank" rel="noopener">Build App</a>
+          <a href="https://devrev.ai/observe-app" target="_blank" rel="noopener">Observe App</a>
+          <a href="https://devrev.ai/agent-studio" target="_blank" rel="noopener">Agent Studio</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Use case pages</span></div>
+        <h3>Use case pages</h3>
+        <p>One page per team, showing what Computer does for them.</p>
+        <div class="links">
+          <a href="https://devrev.ai/use-cases/customer-support-teams" target="_blank" rel="noopener">Support teams</a>
+          <a href="https://devrev.ai/use-cases/sales-teams" target="_blank" rel="noopener">Sales teams</a>
+          <a href="https://devrev.ai/use-cases/service-desk-automation" target="_blank" rel="noopener">Service desk</a>
+          <a href="https://devrev.ai/enterprise-search-and-answers" target="_blank" rel="noopener">Enterprise search</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>Landing pages</span></div>
+        <h3>Comparison and landing pages</h3>
+        <p>Pages for buyers weighing a switch, a region-specific page for ASEAN, and the promotion for a Build vs. Buy guide.</p>
+        <div class="links">
+          <a href="https://devrev.ai/plp/freshdesk-vs-computer" target="_blank" rel="noopener">Freshdesk vs Computer</a>
+          <a href="https://devrev.ai/compare/devrev-vs-zendesk" target="_blank" rel="noopener">DevRev vs Zendesk</a>
+          <a href="https://devrev.ai/plp/customer-support-teams" target="_blank" rel="noopener">Computer for Support (ASEAN)</a>
+          <a href="https://www.linkedin.com/ad-library/detail/957139466" target="_blank" rel="noopener">Build vs. Buy ad</a>
+        </div>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev and TargetBay</span><span>Case studies</span></div>
+        <h3>Customer stories</h3>
+        <p>Case studies built from interviews with customers and account teams.</p>
+        <div class="links">
+          <a href="https://devrev.ai/customers/icici-prudential-life" target="_blank" rel="noopener">ICICI Prudential (DevRev)</a>
+          <a href="https://devrev.ai/customers/rexera" target="_blank" rel="noopener">Rexera (DevRev)</a>
+          <a href="https://targetbay.com/case-study/tinte-cosmetics" target="_blank" rel="noopener">Tinte Cosmetics (TargetBay)</a>
+          <a href="https://targetbay.com/case-study/elina-organics" target="_blank" rel="noopener">Elina Organics (TargetBay)</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="strategy">
+    <div class="head">
+      <h2><span>Brand and content strategy</span></h2>
+      <p>The planning behind the writing: how a brand should sound, how a website should be organised, and which topics are worth writing about.</p>
+    </div>
+    <div class="proof">
+      <div><b>3x</b><span>growth in DevRev's LinkedIn followers, through a content strategy that stayed close to the product</span></div>
+      <div><b>12</b><span>demo bookings from the webinar programs I planned</span></div>
+    </div>
+    <div class="cards two">
+      <div class="card">
+        <div class="tag"><span>TargetBay</span><span>Rebrand</span></div>
+        <h3>Rebranding</h3>
+        <p>Worked on TargetBay's rebrand, rewriting how the company describes itself and its products.</p>
+      </div>
+      <div class="card">
+        <div class="tag"><span>TargetBay</span><span>Guidelines</span></div>
+        <h3>Brand guidelines for content</h3>
+        <p>Built the content guidelines: voice, tone and writing rules, so every writer sounds like the same brand.</p>
+      </div>
+      <div class="card">
+        <div class="tag"><span>TargetBay</span><span>Website</span></div>
+        <h3>Website wireframe and structure</h3>
+        <p>Planned the website's page structure and wireframes: which pages exist, what each one says, and in what order.</p>
+      </div>
+      <div class="card">
+        <div class="tag"><span>DevRev</span><span>SEO planning</span></div>
+        <h3>Keyword and topic planning</h3>
+        <p>Worked with the SEO team to choose which keywords to go after first, set the content strategy and pick topics. The SEO blogs above came out of that plan.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="head">
+      <h2><span>Skills and tools</span></h2>
+      <p>What I do, and what I use to do it.</p>
+    </div>
+    <h3 class="sub">Skills</h3>
+    <dl class="tools">
+      <div><dt>Email</dt><dd>Email marketing, cold email outreach</dd></div>
+      <div><dt>SEO</dt><dd>SEO-optimized blogs, link building</dd></div>
+      <div><dt>Web pages</dt><dd>Website and product page copy</dd></div>
+      <div><dt>Landing pages</dt><dd>Organic landing pages, conversion-focused (CRO) landing pages</dd></div>
+      <div><dt>Paid ads</dt><dd>Event ads, product education ads, promotion ads</dd></div>
+    </dl>
+    <h3 class="sub">Tools</h3>
+    <dl class="tools">
+      <div><dt>SEO and analytics</dt><dd>Google Analytics 4, Google Search Console, Semrush, Ahrefs</dd></div>
+      <div><dt>Design</dt><dd>Figma, Canva, HeyGen, Meta AI, Nano Banana</dd></div>
+      <div><dt>Video editing</dt><dd>Clipchamp, CapCut</dd></div>
+      <div><dt>CMS</dt><dd>WordPress, Sanity, Storyblok</dd></div>
+      <div><dt>CRM</dt><dd>DevRev, HubSpot</dd></div>
+      <div><dt>Email</dt><dd>Instantly, Mailchimp, SendGrid</dd></div>
+      <div><dt>Project management</dt><dd>Trello, Jira, ClickUp</dd></div>
+    </dl>
+  </section>
+
+  <footer id="contact">
+    <h2>Have something that needs writing?</h2>
+    <p>Tell me what the piece is for and who will read it. I take freelance and full-time work, remote anywhere or hybrid in Chennai.</p>
+    <div class="contact">
+      <span class="email" id="email-address">staliaselvarajan@gmail.com</span>
+      <button class="copy" id="copy-email" type="button">Copy email</button>
+      <a href="https://www.linkedin.com/in/stalia-s/" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </footer>
+
+</main>
+
+<script>
+(function () {
+  var btn = document.getElementById('copy-email');
+  var email = document.getElementById('email-address');
+  btn.addEventListener('click', function () {
+    var done = function () { btn.textContent = 'Copied'; setTimeout(function () { btn.textContent = 'Copy email'; }, 1800); };
+    var select = function () {
+      var r = document.createRange(); r.selectNodeContents(email);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      btn.textContent = 'Selected, press copy';
+    };
+    try { navigator.clipboard.writeText(email.textContent).then(done, select); } catch (e) { select(); }
+  });
+})();
+</script>
+
+</body></html>
